@@ -1,0 +1,10 @@
+rootProject.name = 'TAF_Personal_Best_Practices'
+
+include 'core'
+include 'services'
+
+include 'web-ui-tests'
+include 'api-tests'
+
+
+
