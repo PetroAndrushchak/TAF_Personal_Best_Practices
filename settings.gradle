@@ -5,6 +5,5 @@ include 'services'
 
 include 'web-ui-tests'
 include 'api-tests'
-
-
+include 'performance-tests'
 
