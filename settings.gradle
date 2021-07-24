@@ -6,4 +6,6 @@ include 'services'
 include 'web-ui-tests'
 include 'api-tests'
 include 'performance-tests'
+include 'refactoring-approaches'
+include 'response-di-web-ui-tests'
 

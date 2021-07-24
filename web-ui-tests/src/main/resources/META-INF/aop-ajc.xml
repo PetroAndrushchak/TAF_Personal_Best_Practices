@@ -1,0 +1,6 @@
+<aspectj>
+    <aspects>
+        <aspect name="com.petroandrushchak.aop.AllureStepsConsoleLogger"/>
+        <aspect name="com.petroandrushchak.aop.AllureStepRetry"/>
+    </aspects>
+</aspectj>
