@@ -1,0 +1,19 @@
+
+environment: dev
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+name: prod-YAML
+environment: prod
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+name: test-YAML
+environment: test
+

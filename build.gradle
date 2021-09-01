@@ -14,6 +14,9 @@ subprojects {
         compile 'org.projectlombok:lombok:1.18.12'
         annotationProcessor 'org.projectlombok:lombok:1.18.12'
 
+        implementation group: 'org.aeonbits.owner', name: 'owner-java8', version: '1.0.12'
+
+
         implementation group: 'com.github.javaparser', name:'javaparser-core', version: '3.15.13'
         implementation group: 'com.google.guava', name: 'guava', version: '11.0.2'
 
@@ -23,6 +26,16 @@ subprojects {
     processResources {
         from('../logback.xml')
     }
+}
 
+project(':web-ui-tests-junit5') {
+    dependencies {
+        compile project(':web-ui')
+    }
+}
 
+project(':web-ui-tests-testng') {
+    dependencies {
+        compile project(':web-ui')
+    }
 }

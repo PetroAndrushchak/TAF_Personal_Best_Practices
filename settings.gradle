@@ -3,9 +3,13 @@ rootProject.name = 'TAF_Personal_Best_Practices'
 include 'core'
 include 'services'
 
-include 'web-ui-tests'
+include 'web-ui'
+
 include 'api-tests'
 include 'performance-tests'
 include 'refactoring-approaches'
 include 'response-di-web-ui-tests'
+include 'patterns'
+include 'web-ui-tests-junit5'
+include 'web-ui-tests-testng'
 

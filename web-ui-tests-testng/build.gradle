@@ -1,0 +1,66 @@
+import java.util.concurrent.TimeUnit
+
+plugins {
+    id 'io.qameta.allure' version '2.8.1'
+}
+
+def allureVersion = "2.13.6"
+
+allure {
+    autoconfigure = true
+    aspectjweaver = true
+    aspectjVersion = '1.9.2'
+    version = allureVersion
+
+    configuration = 'compile'
+
+}
+
+dependencies {
+
+    testImplementation group: 'org.testng', name: 'testng', version: '7.0.0'
+
+}
+
+test {
+    ignoreFailures = true
+
+    useTestNG()
+
+    beforeTest { desc ->
+        println "\n*** Starting execution of test ${desc.className}.${desc.name} ***"
+    }
+    afterTest { descriptor, result ->
+        println "<<< Test ${descriptor.name} resulted in ${result.resultType} and took "+getElapsedTime(result.endTime - result.startTime)+" >>>\n"
+    }
+
+    testLogging {
+        showStandardStreams = true
+        exceptionFormat "full"
+    }
+}
+
+//This will force the tests to always execute by clearing out the test cache
+test.dependsOn 'cleanTest'
+test.outputs.upToDateWhen {false}
+
+configurations {
+    testCompile
+}
+
+def getElapsedTime(def time) {
+
+    if(time / 1000 < 1)
+    {
+        return String.format("0 min, %.3f sec", time/1000)
+    }
+    else
+    {
+        return String.format("%d min, %d sec",
+                TimeUnit.MILLISECONDS.toMinutes(time),
+                TimeUnit.MILLISECONDS.toSeconds(time) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(time))
+
+        )
+    }
+}
