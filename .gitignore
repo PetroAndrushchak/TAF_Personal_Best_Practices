@@ -27,3 +27,7 @@ hs_err_pid*
 build/
 log/
 out/
+
+/*/allure-results
+/*/config
+patterns/src/main/java/refactoring_guru/
