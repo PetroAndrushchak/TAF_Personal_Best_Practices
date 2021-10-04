@@ -1,7 +1,10 @@
-package tests.junit5;
+package tests;
 
+import com.petroandrushchak.config.TestsConfigs;
+import com.petroandrushchak.driver.CustomWebDriverManager;
 import com.petroandrushchak.steps.SignInSteps;
 import com.petroandrushchak.config.WebUITestsSpringConfiguration;
+import com.petroandrushchak.steps.SiteSteps;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
@@ -13,18 +16,25 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 // @SpringJUnitConfig(TestConfig.class)
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = WebUITestsSpringConfiguration.class)
-public class JUnit5BaseTest {
+public class TestBase {
 
     @Autowired
     protected SignInSteps signInSteps;
 
+    @Autowired
+    protected SiteSteps siteSteps;
+
+    @Autowired
+    protected TestsConfigs configs;
+
     @BeforeAll
-    public static void beforeTest(){
+    public static void beforeAll() {
         System.out.println("Before All");
     }
 
     @BeforeEach
-    public void beforeEach(TestInfo testInfo){
+    public void beforeEach(TestInfo testInfo) {
+        CustomWebDriverManager.setUpDriverConfiguration(configs);
         System.out.println("Before Each");
     }
 

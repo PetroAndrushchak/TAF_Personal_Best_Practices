@@ -1,0 +1,16 @@
+{
+  "chrome": {
+    "default": "91",
+    "versions": {
+      "91.0": {
+        "image": "selenoid/vnc:chrome_91.0",
+        "port": "4444",
+        "path": "/",
+        "volumes" : ["/tmp:/home/emails"],
+        "mem" : "4096m",
+        "shmSize" : 2147483648,
+        "tmpfs": {"/tmp":"size=2048m"}
+      }
+    }
+  }
+}

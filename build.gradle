@@ -21,6 +21,9 @@ subprojects {
         implementation group: 'com.google.guava', name: 'guava', version: '11.0.2'
 
 
+        implementation group: 'org.awaitility', name: 'awaitility', version: '4.1.0'
+
+
     }
 
     processResources {
