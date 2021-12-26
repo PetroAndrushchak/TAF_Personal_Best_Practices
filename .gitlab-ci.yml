@@ -8,4 +8,4 @@ build-job:test:
 test-job1:
   stage: test
   script:
-    - echo "This job tests something"
+    - java -v
