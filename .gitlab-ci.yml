@@ -1,3 +1,6 @@
+
+image: alpine
+
 build-job:test:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
