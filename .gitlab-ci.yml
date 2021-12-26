@@ -11,4 +11,4 @@ build-job:test:
 test-job1:
   stage: test
   script:
-    - java -version
+    - pwd
