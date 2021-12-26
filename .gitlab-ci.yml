@@ -1,5 +1,5 @@
 
-image: gradle:alpine
+image: openjdk:11.0
 
 # stages:
 #   - test
