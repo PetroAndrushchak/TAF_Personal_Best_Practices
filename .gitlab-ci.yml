@@ -9,7 +9,7 @@ stages:
 Build:
   stage: build
   script: 
-    - ./gradlew clean build --info
+    - ./gradlew clean build --stacktrace
 
 RunUITests:
   stage: test
