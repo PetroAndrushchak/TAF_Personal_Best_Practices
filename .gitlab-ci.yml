@@ -1,5 +1,5 @@
 
-image: openjdk:11.0.13-jre-slim
+image: gradle:alpine
 
 # stages:
 #   - test
