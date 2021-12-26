@@ -1,5 +1,5 @@
 
-image: alpine
+image: openjdk11
 
 build-job:test:
   rules:
