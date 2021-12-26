@@ -1,4 +1,6 @@
-build-job:
+build-job:test:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
   stage: build
   script:
     - echo "Hello, $GITLAB_USER_LOGIN!"
