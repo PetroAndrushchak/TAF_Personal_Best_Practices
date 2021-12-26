@@ -1,16 +1,13 @@
 
 image: openjdk:11.0.13-jre-slim
 
-stages:
-  - test
-  - report
+# stages:
+#   - test
 
 RunUITests:
   stage: test
   script:
     - ./gradlew web-ui-tests-junit5:build
-
-
 
 
 
