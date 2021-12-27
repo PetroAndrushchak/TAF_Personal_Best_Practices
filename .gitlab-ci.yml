@@ -1,8 +1,9 @@
 
 image: openjdk:11.0
 
-# stages:
-#   - test
+stages:
+   - RunUITests
+   - AllureReport
 
 RunUITests:
   stage: test
