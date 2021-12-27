@@ -8,11 +8,23 @@ RunUITests:
   stage: test
   script:
     - ./gradlew web-ui-tests-junit5:build
+    - ./gradle web-ui-tests-junit5:allureReport
+  artifacts:
+    when: always
+    paths:
+      - web-ui-tests-junit5/build/allure-results
+    expire_in: 1 week
 
-
-
-
-
+Report:
+  stage: AllureReport
+  script:
+    - mkdir public
+    - mv web-ui-tests-junit5/build/allure-results/* public
+  artifacts:
+    when: always
+    paths:
+      - public
+    expire_in: 1 week
 
 
 
