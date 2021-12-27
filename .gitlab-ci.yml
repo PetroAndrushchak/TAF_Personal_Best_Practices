@@ -14,7 +14,7 @@ stages:
     - cd ../
     - ls
     - ls backup
-    - (cp -r backup/public/history/ allure-results/history) || true
+    - (cp -r backup/public/history/ web-ui-tests-junit5/build/allure-results/history) || true
 
 .Test: &Test
   allow_failure: true
@@ -22,6 +22,9 @@ stages:
   script:
     -  echo "$CI_PROJECT_ID" and "$CI_DEPLOY_TOKEN."
     - ./gradlew web-ui-tests-junit5:build
+    - ls
+    - ls web-ui-tests-junit5/build/allure-results
+    - ls web-ui-tests-junit5/build/reports/allure-report
   artifacts:
     when: always
     paths:
