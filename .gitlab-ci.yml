@@ -11,6 +11,7 @@ stages:
     - mkdir backup && cd backup || true
     - "curl --location --output report.zip --request GET \"https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/jobs/artifacts/main/download?job=pages\" --header \"Authorization: Bearer ${CI_DEPLOY_TOKEN}\" || true"
     - (unzip report.zip) || true
+    - ls
     - cd ../
     - ls
     - ls backup
