@@ -19,7 +19,6 @@ stages:
   stage: Test
   script:
     - ./gradlew web-ui-tests-junit5:build
-    - ./gradlew web-ui-tests-junit5:allureReport
   artifacts:
     when: always
     paths:
@@ -33,12 +32,12 @@ smoke::
 Report:
   stage: Report
   script:
-    - mkdir public
-    - mv web-ui-tests-junit5/build/reports/allure-report/* public
+    - ./gradlew web-ui-tests-junit5:allureReport
   artifacts:
     when: always
     paths:
-      - public
+      - web-ui-tests-junit5/build/allure-results
+      - web-ui-tests-junit5/build/reports/allure-report
     expire_in: 1 week
 
 pages:
@@ -46,6 +45,8 @@ pages:
   when: always
   dependencies:
     - Report
+  script:
+    - mv web-ui-tests-junit5/build/reports/allure-report/ public/
   artifacts:
     paths:
       - public
