@@ -9,7 +9,7 @@ stages:
 .download_history: &download_history
   after_script:
     - mkdir backup && cd backup || true
-    - "curl --location --output report.zip --request GET \"https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/jobs/artifacts/main/download?job=pages\" --header \"Authorization: Bearer ${CI_DEPLOY_TOKEN}\" || true"
+    - "curl --location --output report.zip --request GET \"https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/jobs/artifacts/main/download?job=pages\" --header \"Authorization: Bearer ${CI_JOB_TOKEN}\" || true"
     - (unzip report.zip) || true
     - ls
     - cd ../
@@ -21,7 +21,7 @@ stages:
   allow_failure: true
   stage: Test
   script:
-    -  echo "$CI_PROJECT_ID" and "$CI_DEPLOY_TOKEN."
+    -  echo "$CI_PROJECT_ID" and "$CI_JOB_TOKEN."
     - ./gradlew web-ui-tests-junit5:build
     - ls
     - ls web-ui-tests-junit5/build/allure-results
