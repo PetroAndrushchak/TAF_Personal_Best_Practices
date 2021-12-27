@@ -28,7 +28,7 @@ stages:
   artifacts:
     when: always
     paths:
-      - web-ui-tests-junit5/build/reports/allure-report
+      - web-ui-tests-junit5/build/allure-results
     expire_in: 1 week
 
 smoke::
