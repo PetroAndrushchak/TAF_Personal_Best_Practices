@@ -4,6 +4,7 @@ image: openjdk:11.0
 stages:
   - Test
   - Report
+  - Deploy
 
 .download_history: &download_history
   after_script:
@@ -13,7 +14,8 @@ stages:
     - cd ../
     - (cp -r backup/public/history/ allure-results/history) || true
 
-Test:
+.Test: &Test
+  allow_failure: true
   stage: Test
   script:
     - ./gradlew web-ui-tests-junit5:build
@@ -24,6 +26,9 @@ Test:
       - web-ui-tests-junit5/build/reports/allure-report
     expire_in: 1 week
 
+smoke::
+  <<: *Test
+  <<: *download_history
 
 Report:
   stage: Report
@@ -36,4 +41,12 @@ Report:
       - public
     expire_in: 1 week
 
-
+pages:
+  stage: Deploy
+  when: always
+  dependencies:
+    - Report
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
