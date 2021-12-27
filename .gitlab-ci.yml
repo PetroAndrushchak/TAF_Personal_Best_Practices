@@ -13,6 +13,7 @@ stages:
     - (unzip report.zip) || true
     - cd ../
     - ls
+    - ls backup
     - (cp -r backup/public/history/ allure-results/history) || true
 
 .Test: &Test
