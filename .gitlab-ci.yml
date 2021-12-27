@@ -9,11 +9,11 @@ Test:
   stage: Test
   script:
     - ./gradlew web-ui-tests-junit5:build
-    - ./gradle web-ui-tests-junit5:allureReport
+    - ./gradlew web-ui-tests-junit5:allureReport
   artifacts:
     when: always
     paths:
-      - web-ui-tests-junit5/build/allure-results
+      - web-ui-tests-junit5/build/reports/allure-report
     expire_in: 1 week
 
 
@@ -21,7 +21,7 @@ Report:
   stage: Report
   script:
     - mkdir public
-    - mv web-ui-tests-junit5/build/allure-results/* public
+    - mv web-ui-tests-junit5/build/reports/allure-report/* public
   artifacts:
     when: always
     paths:
