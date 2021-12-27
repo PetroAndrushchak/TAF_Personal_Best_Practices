@@ -18,11 +18,7 @@ stages:
   allow_failure: true
   stage: Test
   script:
-    -  echo "$CI_PROJECT_ID" and "$CI_JOB_TOKEN."
     - ./gradlew web-ui-tests-junit5:build
-    - ls
-    - ls web-ui-tests-junit5/build/allure-results
-    - ls web-ui-tests-junit5/build/reports/allure-report
   artifacts:
     when: always
     paths:
@@ -37,8 +33,6 @@ Report:
   stage: Report
   script:
     - ./gradlew web-ui-tests-junit5:allureReport
-    - ls web-ui-tests-junit5/build/allure-results
-    - ls web-ui-tests-junit5/build/reports/allure-report
   artifacts:
     when: always
     paths:
@@ -52,8 +46,6 @@ pages:
   dependencies:
     - Report
   script:
-    - ls web-ui-tests-junit5/build/reports/allure-report
-    - ls web-ui-tests-junit5/build/reports/allure-report/history
     - mv web-ui-tests-junit5/build/reports/allure-report/ public/
   artifacts:
     paths:
