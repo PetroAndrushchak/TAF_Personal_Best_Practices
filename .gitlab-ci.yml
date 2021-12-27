@@ -54,6 +54,8 @@ pages:
   dependencies:
     - Report
   script:
+    - ls web-ui-tests-junit5/build/reports/allure-report
+    - ls web-ui-tests-junit5/build/reports/allure-report/history
     - mv web-ui-tests-junit5/build/reports/allure-report/ public/
   artifacts:
     paths:
