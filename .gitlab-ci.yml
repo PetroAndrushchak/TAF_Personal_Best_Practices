@@ -9,7 +9,7 @@ stages:
 .download_history: &download_history
   after_script:
     - mkdir backup && cd backup || true
-    - 'curl --location --output artifacts.zip --header "JOB-TOKEN: $CI_JOB_TOKEN" "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/jobs/artifacts/main/download?job=pages"'
+    - 'curl --location --output artifacts.zip --header "PRIVATE-TOKEN: $PETRO_PERSONAL_TOKEN" "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/jobs/artifacts/main/download?job=pages"'
     - (unzip artifacts.zip) || true
     - "curl --location --output report.zip --request GET \"https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/jobs/artifacts/main/download?job=pages\" --header \"Authorization: Bearer ${CI_JOB_TOKEN}\" || true"
     - (unzip report.zip) || true
