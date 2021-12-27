@@ -18,6 +18,7 @@ stages:
   allow_failure: true
   stage: Test
   script:
+    -  echo "$CI_PROJECT_ID" and "$CI_DEPLOY_TOKEN."
     - ./gradlew web-ui-tests-junit5:build
   artifacts:
     when: always
