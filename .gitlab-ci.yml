@@ -2,11 +2,11 @@
 image: openjdk:11.0
 
 stages:
-   - RunUITests
-   - AllureReport
+  - Test
+  - Report
 
-RunUITests:
-  stage: test
+Test:
+  stage: Test
   script:
     - ./gradlew web-ui-tests-junit5:build
     - ./gradle web-ui-tests-junit5:allureReport
@@ -16,8 +16,9 @@ RunUITests:
       - web-ui-tests-junit5/build/allure-results
     expire_in: 1 week
 
+
 Report:
-  stage: AllureReport
+  stage: Report
   script:
     - mkdir public
     - mv web-ui-tests-junit5/build/allure-results/* public
@@ -28,10 +29,3 @@ Report:
     expire_in: 1 week
 
 
-
-build-job:test:
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-  stage: build
-  script:
-    - echo "Hello, $GITLAB_USER_LOGIN!"
