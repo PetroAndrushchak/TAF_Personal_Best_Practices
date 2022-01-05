@@ -50,7 +50,7 @@ pages:
   dependencies:
     - Report
   script:
-    - echo 'TODO'
+    - mv web-ui-tests-junit5/build/reports/allure-report/ public/
   artifacts:
     paths:
       - public
