@@ -8,6 +8,7 @@ DownloadArtifacts:
   stage: DownloadArtifacts
   script:
     - echo "PARENT_CI_JOB_TOKEN $UPSTREAM_CI_JOB_TOKEN token."
+    - echo "PETRO_PERSONAL_TOKEN $PETRO_PERSONAL_TOKEN token."
     - echo "CI_JOB_TOKEN $CI_JOB_TOKEN token."
     - echo "CI_PROJECT_ID $CI_PROJECT_ID project id."
     - mkdir backup && cd backup || true

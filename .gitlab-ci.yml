@@ -12,3 +12,19 @@ buildProject:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push"'
       when: always
+
+DownloadArtifacts:
+  stage: DownloadArtifacts
+  script:
+    - echo "PARENT_CI_JOB_TOKEN $UPSTREAM_CI_JOB_TOKEN token."
+    - echo "PETRO_PERSONAL_TOKEN $PETRO_PERSONAL_TOKEN token."
+    - echo "CI_JOB_TOKEN $CI_JOB_TOKEN token."
+    - echo "CI_PROJECT_ID $CI_PROJECT_ID project id."
+    - mkdir backup && cd backup || true
+    - 'curl -v --location --output report.zip --header "PRIVATE-TOKEN: $PETRO_PERSONAL_TOKEN" "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/jobs/artifacts/main/download?job=pages"'
+    - (unzip report.zip) || true
+    - cd ../
+    - (cp -r backup/public/history/ web-ui-tests-junit5/build/allure-results/history) || true
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+      when: always
