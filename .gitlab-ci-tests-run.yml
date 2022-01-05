@@ -25,9 +25,9 @@ stages:
       - web-ui-tests-junit5/build/allure-results
     expire_in: 1 week
 
-  smoke::
-<<: *Test
-<<: *download_history
+smoke::
+ <<: *Test
+ <<: *download_history
 
 Report:
   stage: Report
