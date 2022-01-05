@@ -11,4 +11,4 @@ buildProject:
   script: echo "Build Project"
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push"'
-      when: always
+      when: manual
