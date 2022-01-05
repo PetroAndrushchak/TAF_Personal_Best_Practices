@@ -14,7 +14,6 @@ buildProject:
       when: always
 
 DownloadArtifacts:
-  stage: DownloadArtifacts
   script:
     - echo "PARENT_CI_JOB_TOKEN $UPSTREAM_CI_JOB_TOKEN token."
     - echo "PETRO_PERSONAL_TOKEN $PETRO_PERSONAL_TOKEN token."
