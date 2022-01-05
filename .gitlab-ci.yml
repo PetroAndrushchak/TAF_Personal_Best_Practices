@@ -1,10 +1,11 @@
 runTests:
   variables:
-    UPSTREAM_CI_JOB_TOKEN: $CI_JOB_TOKEN
+    UPSTREAM_CI_JOB_TOKEN: $PETRO_PERSONAL_TOKEN
   trigger:
     include: .gitlab-ci-tests-run.yml
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+      when: always
 
 buildProject:
   script: echo "Build Project"
