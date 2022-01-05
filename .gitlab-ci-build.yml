@@ -1,0 +1,11 @@
+
+image: openjdk:11.0-jdk-slim
+
+stages:
+  - Build
+
+Build:
+  allow_failure: false
+  stage: Build
+  script:
+    - ./gradlew web-ui-tests-junit5:build -x test
