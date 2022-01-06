@@ -5,7 +5,6 @@ runTests:
     include: .gitlab-ci-tests-run.yml
   rules:
     - if: '$CI_PIPELINE_SOURCE == "scheduled"'
-      when: always
 
 
 buildProject:
