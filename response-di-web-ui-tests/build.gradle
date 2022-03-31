@@ -14,8 +14,8 @@ dependencies {
     implementation 'com.google.inject:guice:4.1.0'
 
 
-    compile group: 'org.springframework', name: 'spring-test', version: '5.3.8'
-    compile group: 'org.springframework', name: 'spring-context', version: "5.3.8"
+    implementation group: 'org.springframework', name: 'spring-test', version: '5.3.8'
+    implementation group: 'org.springframework', name: 'spring-context', version: "5.3.8"
 
 }
 

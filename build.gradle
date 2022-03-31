@@ -1,6 +1,13 @@
+plugins {
+    id 'io.freefair.lombok' version '6.4.1' apply false
+    id'io.qameta.allure' version '2.9.6' apply false
+}
+
 subprojects {
 
     apply plugin: 'java'
+    apply plugin: 'io.freefair.lombok'
+    apply plugin: 'io.qameta.allure'
 
     repositories {
         mavenLocal()
@@ -8,20 +15,22 @@ subprojects {
     }
 
     dependencies {
-        compile 'ch.qos.logback:logback-core:1.2.3',
+        implementation 'ch.qos.logback:logback-core:1.2.3',
                 'ch.qos.logback:logback-classic:1.2.3'
-
-        compile 'org.projectlombok:lombok:1.18.12'
-        annotationProcessor 'org.projectlombok:lombok:1.18.12'
+//
+//        compile 'org.projectlombok:lombok:1.18.12'
+//        annotationProcessor 'org.projectlombok:lombok:1.18.12'
 
         implementation group: 'org.aeonbits.owner', name: 'owner-java8', version: '1.0.12'
-
+        implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.2'
 
         implementation group: 'com.github.javaparser', name:'javaparser-core', version: '3.15.13'
         implementation group: 'com.google.guava', name: 'guava', version: '11.0.2'
 
-
         implementation group: 'org.awaitility', name: 'awaitility', version: '4.1.0'
+
+        implementation group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
+
 
 
     }
@@ -31,14 +40,8 @@ subprojects {
     }
 }
 
-project(':web-ui-tests-junit5') {
-    dependencies {
-        compile project(':web-ui')
-    }
-}
-
 project(':web-ui-tests-testng') {
     dependencies {
-        compile project(':web-ui')
+        implementation project(':web-ui')
     }
 }

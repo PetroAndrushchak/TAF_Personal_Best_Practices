@@ -1,5 +1,6 @@
 package tests.exclusive_listings;
 
+import com.google.common.reflect.ClassPath;
 import com.petroandrushchak.models.Agent;
 import com.petroandrushchak.registry.UserRegistry;
 import io.qameta.allure.*;
@@ -7,6 +8,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import tests.TestBase;
+
+import java.io.IOException;
+import java.util.Set;
 
 import static tests.metadata.Epic.EXCLUSIVE_LISTINGS;
 import static tests.metadata.Feature.CREATE_EXCLUSIVE_LISTING;
@@ -25,9 +29,10 @@ public class CreateExclusiveListingTest extends TestBase {
     @Description("Creating Exclusive Listing by Agent")
     @DisplayName(CREATE_EXCLUSIVE_LISTING)
     @Test
-    public void agentCanCreateExclusiveListingTest() {
+    public void agentCanCreateExclusiveListingTest()  {
         Agent agent = UserRegistry.getAgent();
       //  siteSteps.openHomePage();
+
         signInSteps.logInAsAgent(agent);
         System.out.println("create");
     }

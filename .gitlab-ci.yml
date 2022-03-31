@@ -1,57 +1,48 @@
-
-image: openjdk:11.0
-
 stages:
+  - Build
   - Test
   - Report
   - Deploy
 
-.download_history: &download_history
-  after_script:
-    - echo "PARENT_CI_JOB_TOKEN $UPSTREAM_CI_JOB_TOKEN token."
-    - echo "PETRO_PERSONAL_TOKEN $PETRO_PERSONAL_TOKEN token."
-    - echo "CI_JOB_TOKEN $CI_JOB_TOKEN token."
-    - echo "CI_PROJECT_ID $CI_PROJECT_ID project id."
-    - mkdir backup && cd backup || true
-    - 'curl -v --location --output report.zip --header "PRIVATE-TOKEN: $PETRO_PERSONAL_TOKEN" "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/jobs/artifacts/main/download?job=pages"'
-    - (unzip report.zip) || true
-    - cd ../
-    - (cp -r backup/public/history/ web-ui-tests-junit5/build/allure-results/history) || true
+.runTestsRule:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
 
-.Test: &Test
-  allow_failure: true
+RunTests:
   stage: Test
+  allow_failure: true
   script:
-    - ./gradlew web-ui-tests-junit5:build
-  artifacts:
-    when: always
-    paths:
-      - web-ui-tests-junit5/build/allure-results
-    expire_in: 1 week
+    - echo "Run Tests"
+  extends: .runTestsRule
 
-smoke::
-  <<: *Test
-  <<: *download_history
+DownloadAllureHistory:
+  stage: Test
+  dependencies:
+    - RunTests
+  script:
+    - echo "Test download_history"
+  extends: .runTestsRule
 
 Report:
   stage: Report
+  dependencies:
+    - RunTests
   script:
-    - ./gradlew web-ui-tests-junit5:allureReport
-  artifacts:
-    when: always
-    paths:
-      - web-ui-tests-junit5/build/allure-results
-      - web-ui-tests-junit5/build/reports/allure-report
-    expire_in: 1 week
+    - echo "Report"
+  extends: .runTestsRule
 
-pages:
+Pages:
   stage: Deploy
-  when: always
   dependencies:
     - Report
   script:
-    - mv web-ui-tests-junit5/build/reports/allure-report/ public/
-  artifacts:
-    paths:
-      - public
-    expire_in: 30 days
+    - echo "pages"
+  extends: .runTestsRule
+
+buildProject:
+  stage: Build
+  script: echo "Build Project"
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+      when: always
+

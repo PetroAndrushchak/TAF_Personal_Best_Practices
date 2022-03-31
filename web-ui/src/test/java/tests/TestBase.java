@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-// @SpringJUnitConfig(TestConfig.class)
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = WebUITestsSpringConfiguration.class)
 public class TestBase {

@@ -20,6 +20,7 @@ public class AllureStepRetry {
 
     @Around("@annotation(com.petroandrushchak.aop.RetryStep) && execution(* *(..))")
     public Object handleRetries(final ProceedingJoinPoint joinPoint) throws Throwable {
+        log.info("Retrying with Retry Step Annotation");
         processingWrapper.set(true);
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         Method method = methodSignature.getMethod();

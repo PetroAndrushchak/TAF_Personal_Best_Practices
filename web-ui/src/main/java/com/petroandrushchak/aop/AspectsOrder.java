@@ -6,6 +6,6 @@ import org.aspectj.lang.annotation.DeclarePrecedence;
 @Aspect
 @DeclarePrecedence(
         "com.petroandrushchak.aop.AllureStepsConsoleLogger, " +
-                "com.petroandrushchak.aop.AllureStepRetry, ")
+                "com.petroandrushchak.aop.AllureStepRetry")
 public class AspectsOrder {
 }

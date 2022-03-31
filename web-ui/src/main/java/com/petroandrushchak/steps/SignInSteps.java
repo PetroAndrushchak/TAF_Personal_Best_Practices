@@ -4,23 +4,23 @@ import com.petroandrushchak.aop.RetryStep;
 import com.petroandrushchak.models.Agent;
 import com.petroandrushchak.models.User;
 import io.qameta.allure.Step;
-import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SignInSteps {
 
-    @Step("Log in as a user {user} ")
-    @Retryable
     @RetryStep
+    @Step("Log in as a user {user} ")
     public void logInAsUser(User user){
-        System.out.println("Log in console!!!");
-        throw new RuntimeException();
+        System.out.println("Log in console!!! As a User");
+       // throw new RuntimeException();
     }
 
+    @RetryStep
     @Step("Log in as an agent {agent} ")
     public void logInAsAgent(Agent agent){
-        System.out.println("Log in console!!!");
+        System.out.println("Log in console!!! Agent");
+        throw new RuntimeException();
     }
 
 }

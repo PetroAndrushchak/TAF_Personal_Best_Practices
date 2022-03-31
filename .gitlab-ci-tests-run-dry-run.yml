@@ -16,17 +16,17 @@ stages:
     - 'curl -v --location --output report.zip --header "PRIVATE-TOKEN: $PETRO_PERSONAL_TOKEN" "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/jobs/artifacts/main/download?job=pages"'
     - (unzip report.zip) || true
     - cd ../
-    - (cp -r backup/public/history/ web-ui/build/allure-results/history) || true
+    - (cp -r backup/public/history/ web-ui-tests-junit5/build/allure-results/history) || true
 
 .Test: &Test
   allow_failure: true
   stage: Test
   script:
-    - ./gradlew web-ui:build
+    - ./gradlew web-ui-tests-junit5:build
   artifacts:
     when: always
     paths:
-      - web-ui/build/allure-results
+      - web-ui-tests-junit5/build/allure-results
     expire_in: 1 week
 
 smoke::
@@ -36,12 +36,12 @@ smoke::
 Report:
   stage: Report
   script:
-    - ./gradlew web-ui:allureReport
+    - ./gradlew web-ui-tests-junit5:allureReport
   artifacts:
     when: always
     paths:
-      - web-ui/build/allure-results
-      - web-ui/build/reports/allure-report
+      - web-ui-tests-junit5/build/allure-results
+      - web-ui-tests-junit5/build/reports/allure-report
     expire_in: 1 week
 
 pages:
@@ -50,7 +50,7 @@ pages:
   dependencies:
     - Report
   script:
-    - mv web-ui/build/reports/allure-report/ public/
+    - mv web-ui-tests-junit5/build/reports/allure-report/ public/
   artifacts:
     paths:
       - public
