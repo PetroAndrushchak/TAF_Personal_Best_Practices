@@ -30,18 +30,9 @@ subprojects {
         implementation group: 'org.awaitility', name: 'awaitility', version: '4.1.0'
 
         implementation group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
-
-
-
     }
 
     processResources {
         from('../logback.xml')
-    }
-}
-
-project(':web-ui-tests-testng') {
-    dependencies {
-        implementation project(':web-ui')
     }
 }
