@@ -6,7 +6,7 @@ allure {
     adapter {
         allureJavaVersion.set("2.14.0")
         aspectjVersion.set("1.9.5")
-        autoconfigure.set(true)
+       // autoconfigure.set(true)
         autoconfigureListeners.set(true)
         aspectjWeaver.set(true)
         frameworks {
@@ -17,6 +17,10 @@ allure {
             }
         }
     }
+//
+//    report {
+//        reportDir.set(layout.projectDirectory.dir(project.projectDir.toString() + "/allure-reports"))
+//    }
 }
 
 clean.doFirst {
@@ -25,8 +29,11 @@ clean.doFirst {
 }
 
 dependencies {
+
     implementation("io.qameta.allure:allure-java-commons:$allureVersion")
     // implementation group: 'io.qameta.allure', name: 'allure-testng', version: '2.14.0'
+
+    implementation group: 'com.aventstack', name: 'extentreports', version: '5.0.9'
 
     implementation group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.2'
     implementation group: 'org.aspectj', name: 'aspectjrt', version: '1.9.2'
@@ -45,11 +52,14 @@ dependencies {
     testImplementation group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.8.0'
     testImplementation group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.8.0'
     testImplementation group: 'org.junit.platform', name: 'junit-platform-suite-api', version: '1.8.0'
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-suite-engine', version: '1.8.0'
 
 
     testImplementation group: 'org.testng', name: 'testng', version: '7.0.0'
 
     implementation group: 'com.codeborne', name: 'selenide', version: '5.22.0'
+    implementation group: 'com.microsoft.playwright', name: 'playwright', version: '1.22.0'
+
 
     implementation group: 'org.springframework', name: 'spring-test', version: '5.3.8'
     implementation group: 'org.springframework', name: 'spring-context', version: "5.3.8"
@@ -63,9 +73,10 @@ test {
 
     systemProperties System.getProperties()
 
+  //  systemProperty 'allure.results.directory', project.projectDir.toString() + "/allure-results"
+
     useJUnitPlatform {
     }
-    //useTestNG()
 
     beforeTest { desc ->
         println "\n*** Starting execution of test ${desc.className}.${desc.name} ***"

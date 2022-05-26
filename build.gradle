@@ -1,5 +1,5 @@
 plugins {
-    id 'io.freefair.lombok' version '6.4.1' apply false
+    id 'io.freefair.lombok' version '6.4.2' apply false
     id'io.qameta.allure' version '2.9.6' apply false
 }
 
@@ -9,14 +9,22 @@ subprojects {
     apply plugin: 'io.freefair.lombok'
     apply plugin: 'io.qameta.allure'
 
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+    }
+
     repositories {
         mavenLocal()
-        jcenter()
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://repo.spring.io/plugins-release/" }
     }
 
     dependencies {
-        implementation 'ch.qos.logback:logback-core:1.2.3',
-                'ch.qos.logback:logback-classic:1.2.3'
+        implementation 'ch.qos.logback:logback-core:1.2.11',
+                'ch.qos.logback:logback-classic:1.2.11'
 //
 //        compile 'org.projectlombok:lombok:1.18.12'
 //        annotationProcessor 'org.projectlombok:lombok:1.18.12'
