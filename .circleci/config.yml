@@ -72,10 +72,10 @@ jobs:
             name: Wait for the connection to be established and check IP  
             command: |  
               until [ -f /tmp/openvpn.log ] && [ "$(grep -c "Initialization Sequence Completed" /tmp/openvpn.log)" != 0 ]; do  
-                echo Attempting to connect to VPN server..."  
+                echo "Attempting to connect to VPN server..."  
                 sleep 1;  
               done
-              
+
               printf "\nVPN connected\n"  
               printf "\nPublic IP is now $(curl checkip.amazonaws.com)\n"    
 
