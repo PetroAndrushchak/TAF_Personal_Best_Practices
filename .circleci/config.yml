@@ -11,6 +11,7 @@ jobs:
       steps:
         - vpn/install
         - vpn/connect
+        
         - checkout
         - run:
             name: "Say hello"
