@@ -79,7 +79,7 @@ jobs:
               printf "\nVPN connected\n"  
               printf "\nPublic IP is now $(curl checkip.amazonaws.com)\n"    
 
-        - checkout
+        #- checkout
         - run:
             name: "Say hello"
             command: "echo $MY_EMAIL"
