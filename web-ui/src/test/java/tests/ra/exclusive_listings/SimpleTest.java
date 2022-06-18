@@ -14,6 +14,7 @@ public class SimpleTest extends TestBase {
 
     @Test
     void testOpenPS() throws InterruptedException, FileNotFoundException {
+        Thread.sleep(300000);
         Selenide.open("https://alpha.peerspaceapp.com");
         Thread.sleep(10000);
         File screenshot = Screenshots.takeScreenShotAsFile();
