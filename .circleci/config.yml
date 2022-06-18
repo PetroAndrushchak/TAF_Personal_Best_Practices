@@ -93,8 +93,14 @@ jobs:
         - run:
             name: "Run Test"
             command: "./gradlew :web-ui:test --tests 'tests.ra.exclusive_listings.SimpleTest.testOpenPS'"
-
-
+        - run:
+            name: "Generate ALlure report"   
+            command: " ./gradlew web-ui:allureReport"
+        - store_test_results:
+                path: web-ui/build/test-results
+        - store_artifacts:
+                path: web-ui/build/reports/allure-report/allureReport
+        
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
