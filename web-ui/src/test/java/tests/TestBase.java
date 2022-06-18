@@ -3,6 +3,7 @@ package tests;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.ViewName;
+import com.codeborne.selenide.Configuration;
 import com.petroandrushchak.config.TestsConfigs;
 import com.petroandrushchak.ra.driver.CustomWebDriverManager;
 import com.petroandrushchak.ra.steps.SignInSteps;
@@ -21,49 +22,25 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ContextConfiguration(classes = WebUITestsSpringConfiguration.class)
 public class TestBase {
 
-    @Autowired
-    protected SignInSteps signInSteps;
+//    @Autowired
+//    protected SignInSteps signInSteps;
 
-    @Autowired
-    protected SiteSteps siteSteps;
+//    @Autowired
+//    protected SiteSteps siteSteps;
 
     @Autowired
     protected TestsConfigs configs;
 
-    public static final ExtentReports extentReports = new ExtentReports();
-
     @BeforeAll
     public static void beforeAll() {
-        ExtentSparkReporter reporter = new ExtentSparkReporter("/Users/pandr/Workspace/TAF_Personal_Best_Practices/extent-reports/extent-report.html")
-                .viewConfigurer()
-                .viewOrder()
-                .as(new ViewName[] {
-                        ViewName.DASHBOARD,
-                        ViewName.TEST,
-                        ViewName.AUTHOR,
-                        ViewName.DEVICE,
-                        ViewName.EXCEPTION,
-                        ViewName.LOG
-                })
-                .apply();;
-        reporter.config().setReportName("Sample Extent Report");
-        extentReports.attachReporter(reporter);
-        extentReports.setSystemInfo("Blog Name", "SW Test Academy");
-        extentReports.setSystemInfo("Author", "Onur Baskirt");
+        System.out.println("Before All");
     }
-
-    @AfterAll
-    public static void afterAll(){
-        extentReports.flush();
-    }
-//    @BeforeAll
-//    public static void beforeAll() {
-//        System.out.println("Before All");
-//    }
 
     @BeforeEach
     public void beforeEach(TestInfo testInfo) {
-        CustomWebDriverManager.setUpDriverConfiguration(configs);
+        Configuration.browser = "chrome";
+
+       // CustomWebDriverManager.setUpDriverConfiguration(configs);
         System.out.println("Before Each");
     }
 

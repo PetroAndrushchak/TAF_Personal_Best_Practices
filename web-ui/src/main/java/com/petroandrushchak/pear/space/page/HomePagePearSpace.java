@@ -13,8 +13,8 @@ public class HomePagePearSpace {
     Locator logInButton;
 
     public HomePagePearSpace() {
-        this.page = BrowserManager.getPage();
-        logInButton = page.locator("#header_link_signin");
+//        this.page = BrowserManager.getPage();
+//        logInButton = page.locator("#header_link_signin");
     }
 
     public HomePagePearSpace openHomePage() {

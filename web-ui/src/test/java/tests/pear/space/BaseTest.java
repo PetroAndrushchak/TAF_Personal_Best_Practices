@@ -3,6 +3,7 @@ package tests.pear.space;
 import com.microsoft.playwright.*;
 import com.petroandrushchak.config.BrowserManager;
 import com.petroandrushchak.config.WebUITestsSpringConfiguration;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+@Slf4j
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = WebUITestsSpringConfiguration.class)
 public class BaseTest {
@@ -21,23 +23,15 @@ public class BaseTest {
     BrowserContext context;
     Page page;
 
-    @BeforeAll
-    static void launchBrowser() {
-        BrowserManager.setUpPlaywright();
-    }
-
-    @BeforeEach
-    void createContextAndPage() {
-        BrowserManager.getPage();
-    }
-
     @AfterEach
-    void closeContext() {
-        BrowserManager.closePage();
+    void closeBrowser() {
+        log.info("AfterEach: Closing Browser");
+        BrowserManager.closeBrowser();
     }
 
     @AfterAll
-    static void closeBrowser() {
-        BrowserManager.closeBrowser();
+    static void closePlaywright() {
+        log.info("AfterAll: Closing playwright");
+        BrowserManager.closePlaywright();
     }
 }

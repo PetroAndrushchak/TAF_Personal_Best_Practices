@@ -6,7 +6,7 @@ import com.petroandrushchak.ra.models.User;
 import io.qameta.allure.Step;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class SignInSteps {
 
     @RetryStep

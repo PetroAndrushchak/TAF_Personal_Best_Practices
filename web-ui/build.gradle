@@ -54,15 +54,13 @@ dependencies {
     testImplementation group: 'org.junit.platform', name: 'junit-platform-suite-api', version: '1.8.0'
     testImplementation group: 'org.junit.platform', name: 'junit-platform-suite-engine', version: '1.8.0'
 
-
     testImplementation group: 'org.testng', name: 'testng', version: '7.0.0'
 
     implementation group: 'com.codeborne', name: 'selenide', version: '5.22.0'
     implementation group: 'com.microsoft.playwright', name: 'playwright', version: '1.22.0'
 
-
-    implementation group: 'org.springframework', name: 'spring-test', version: '5.3.8'
-    implementation group: 'org.springframework', name: 'spring-context', version: "5.3.8"
+    implementation group: 'org.springframework', name: 'spring-test', version: '5.3.20'
+    implementation group: 'org.springframework', name: 'spring-context', version: "5.3.20"
 
     implementation group: 'org.springframework.retry', name: 'spring-retry', version: '1.3.1'
 

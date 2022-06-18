@@ -29,7 +29,7 @@ public class CreateExclusiveListingTest extends TestBase {
         Agent agent = UserRegistry.getAgent();
       //  siteSteps.openHomePage();
 
-        signInSteps.logInAsAgent(agent);
+        //signInSteps.logInAsAgent(agent);
         System.out.println("create");
     }
 
@@ -42,7 +42,7 @@ public class CreateExclusiveListingTest extends TestBase {
     void adminCanCreateExclusiveListingTest() {
         Agent agent = UserRegistry.getAgent();
         //  siteSteps.openHomePage();
-        signInSteps.logInAsAgent(agent);
+     //   signInSteps.logInAsAgent(agent);
         System.out.println("create admin");
     }
 
