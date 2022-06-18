@@ -6,14 +6,13 @@ import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
 @Slf4j
-@Service
 public class CustomWebDriverManager {
-
 
     @Step("Set up driver configuration ")
     public static void setUpDriverConfiguration(TestsConfigs configs) {
@@ -24,14 +23,14 @@ public class CustomWebDriverManager {
             Configuration.browserCapabilities.merge(getSelenoidDesiredCapabilities());
             Configuration.remote = "http://localhost:4444/wd/hub";
         } else {
-            Configuration.headless = configs.headless();
+            Configuration.headless = false; //configs.headless();
         }
 
-        Configuration.browser = configs.browser();
+        Configuration.browser = "chrome";
         // Configuration.browserSize = BrowserResolution.format(browserSize).getSize();
         // log.info("Browser size is: " + Configuration.browserSize);
         Configuration.browserPosition = "0x0";
-        Configuration.baseUrl = configs.host();
+       // Configuration.baseUrl = configs.host();
         Configuration.timeout = 20000;
 
         //turn off taking screenshots automatically, screenshots are done via listeners

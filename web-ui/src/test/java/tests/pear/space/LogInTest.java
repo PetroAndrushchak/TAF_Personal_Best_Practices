@@ -25,6 +25,6 @@ class LogInTest extends BaseTest {
         homePagePearSpace.openHomePage()
                 .clickLogInButton();
 
-        Thread.sleep(10000);
+        Thread.sleep(2000);
     }
 }

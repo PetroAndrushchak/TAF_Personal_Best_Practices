@@ -29,7 +29,7 @@ public class DeleteExclusiveListingTest extends TestBase {
         Agent agent = UserRegistry.getAgent();
 
         //  siteSteps.openHomePage();
-        signInSteps.logInAsAgent(agent);
+//        signInSteps.logInAsAgent(agent);
 
         System.out.println("delete");
     }

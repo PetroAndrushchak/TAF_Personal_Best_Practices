@@ -10,4 +10,5 @@ include 'performance-tests'
 include 'refactoring-approaches'
 include 'response-di-web-ui-tests'
 include 'patterns'
+include 'mobile'
 
