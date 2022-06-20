@@ -70,18 +70,19 @@ jobs:
               "${vpn_command[@]}" > /tmp/openvpn.log  
 
         - run:
-            count=60
-            while [ ${count} -lt 0 ]; do
+            command: |  
+              count=60
+              while [ ${count} -lt 0 ]; do
 
-              if [ -f /tmp/openvpn.log ] && [ "$(grep -c "Initialization Sequence Completed" /tmp/openvpn.log)" != 0 ]; then
-                echo "VPN connected"
-                break
-              else
-                echo "Attempting to connect to VPN server..."
-                (( count-=1 ))
-                sleep 1
-              fi
-            done
+                if [ -f /tmp/openvpn.log ] && [ "$(grep -c "Initialization Sequence Completed" /tmp/openvpn.log)" != 0 ]; then
+                  echo "VPN connected"
+                  break
+                else
+                  echo "Attempting to connect to VPN server..."
+                  (( count-=1 ))
+                  sleep 1
+                fi
+              done
             # name: Wait for the connection to be established and check IP  
             # command: |  
             #   until [ -f /tmp/openvpn.log ] && [ "$(grep -c "Initialization Sequence Completed" /tmp/openvpn.log)" != 0 ]; do  
