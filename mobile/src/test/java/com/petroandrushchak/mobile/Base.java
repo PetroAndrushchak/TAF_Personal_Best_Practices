@@ -18,7 +18,7 @@ public class Base {
 
         cap.setCapability(MobileCapabilityType.DEVICE_NAME, "PetroTestDevice");
         cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");//new step
-        cap.setCapability(MobileCapabilityType.APP, resourcePath("ApiDemos-debug.apk"));
+        cap.setCapability(MobileCapabilityType.APP, "/Users/pandrushchak.appwell/Workspace/Peerspace/mobile/android/app/build/outputs/apk/alpha/debug/app-alpha-debug.apk");
 
         return new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), cap);
     }
