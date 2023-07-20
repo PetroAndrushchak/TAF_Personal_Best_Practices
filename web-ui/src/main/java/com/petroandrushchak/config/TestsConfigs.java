@@ -14,12 +14,19 @@ public interface TestsConfigs extends Config {
     String host();
 
     String environment();
+
     String domain();
 
+    @Key("isRemoteSelenoidRun")
     boolean isRemoteSelenoidRun();
 
+    @Key("isRemoteSeleniumHubRun")
+    boolean isRemoteSeleniumHubRun();
+
     String browser();
+
     boolean headless();
+
     String browserSizeType();
 
     String jiraUrl();

@@ -10,13 +10,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class SimpleTest extends TestBase {
+public class SimpleTest {
 
     @Test
     void testOpenPS() throws InterruptedException, FileNotFoundException {
-        Thread.sleep(300000);
-        Selenide.open("https://alpha.peerspaceapp.com");
-        Thread.sleep(10000);
+
+        Selenide.open("https://www.realtyaustin.com/");
+       // Thread.sleep(30000);
         File screenshot = Screenshots.takeScreenShotAsFile();
         Allure.addAttachment("Last Screen before browser close", new FileInputStream(screenshot));
     }
