@@ -70,12 +70,31 @@ jobs:
               "${vpn_command[@]}" > /tmp/openvpn.log  
 
         - run:
-            name: Wait for the connection to be established and check IP  
             command: |  
-              until [ -f /tmp/openvpn.log ] && [ "$(grep -c "Initialization Sequence Completed" /tmp/openvpn.log)" != 0 ]; do  
-                echo "Attempting to connect to VPN server..."  
-                sleep 1;  
+              count=2
+              while [ ${count} -gt 0 ]; do
+
+                if [ -f /tmp/openvpn.log ] && [ "$(grep -c "Initialization Sequence Completed" /tmp/openvpn.log)" != 0 ]; then
+                  echo "VPN connected"
+                  break
+                else
+                  echo "Attempting to connect to VPN server... $count"
+                  (( count-=1 ))
+                  sleep 1
+                fi
               done
+
+              if ! [ -f /tmp/openvpn.log ] && [ "$(grep -c "Initialization Sequence Completed" /tmp/openvpn.log)" != 0 ]; then
+                echo "Connection to VPN failed "
+                exit 1
+              fi
+
+            # name: Wait for the connection to be established and check IP  
+            # command: |  
+            #   until [ -f /tmp/openvpn.log ] && [ "$(grep -c "Initialization Sequence Completed" /tmp/openvpn.log)" != 0 ]; do  
+            #     echo "Attempting to connect to VPN server..."  
+            #     sleep 1;  
+            #   done
 
         #       printf "\nVPN connected\n"  
         #       printf "\nPublic IP is now $(curl checkip.amazonaws.com)\n"
